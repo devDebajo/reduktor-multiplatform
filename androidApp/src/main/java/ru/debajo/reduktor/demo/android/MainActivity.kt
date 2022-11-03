@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.debajo.reduktor.demo.AndroidComposeEntryPoint
+import ru.debajo.reduktor.demo.domain.ContextHolder
 
 @Composable
 fun MyApplicationTheme(
@@ -64,6 +65,8 @@ fun MyApplicationTheme(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ContextHolder.context = applicationContext
+
         setContent {
             MyApplicationTheme {
                 Surface(

@@ -1,67 +1,84 @@
 package ru.debajo.reduktor.demo
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import ru.debajo.reduktor.demo.di.Di
+import ru.debajo.reduktor.demo.model.Event
+import ru.debajo.reduktor.demo.model.News
+import ru.debajo.reduktor.demo.model.State
+import ru.debajo.reduktor.demo.reduktor.ReduktorStore
+import ru.debajo.reduktor.demo.reduktor.reduktorStore
 
 @Composable
 internal fun ComposeEntryPoint(modifier: Modifier = Modifier) {
     val store = remember { createStore() }
-    val state by store.state.collectAsState()
 
-    Box(modifier) {
-        Text("Reduktor kmm: counter ${state.count}")
-    }
-}
+    Column(modifier) {
+        LaunchedEffect(key1 = store, block = {
+            store.onEvent(Event.LoadCity)
+        })
+        val state by store.state.collectAsState()
+        state.let {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                when (it) {
+                    is State.Data -> {
+                        Column {
+                            Text("Temp: ${it.temp}")
+                            Text("Feels like: ${it.feelsLike}")
+                            Button(onClick = { store.onEvent(Event.Refresh) }) {
+                                Text("Refresh")
+                            }
+                        }
+                    }
+                    is State.LoadingWeather -> Text("Loading")
+                    is State.NoLocation -> Text("No location")
+                    is State.LoadingError -> {
+                        Column {
+                            Text("Error")
+                            Button(onClick = { store.onEvent(Event.Refresh) }) {
+                                Text("Refresh")
+                            }
+                        }
+                    }
+                }
 
-fun createStore(): ReduktorStore<State, Event, Unit> {
-    return reduktorStore(
-        initialState = State(),
-        initialEvents = listOf(Event.Start),
-        eventReduktor = MReduktor(),
-        commandProcessors = listOf(MCommandProcessor()),
-        commandResultReduktor = MResultReduktor(),
-    )
-}
-
-data class State(val count: Int = 0)
-
-sealed interface Event {
-    object Start : Event
-}
-
-class MReduktor : Reduktor<State, Event, Unit> {
-    override fun invoke(state: State, event: Event): Akt<State, Unit> {
-        return Akt()
-    }
-}
-
-class MResultReduktor : Reduktor<State, CommandResult, Unit> {
-    override fun invoke(state: State, event: CommandResult): Akt<State, Unit> {
-        return when (event) {
-            is MCommandResult -> Akt(state.copy(count = event.counter))
-            else -> Akt()
-        }
-    }
-}
-
-class MCommandProcessor : CommandProcessor {
-    override fun invoke(commands: Flow<Command>): Flow<CommandResult> {
-        return flow {
-            var counter = 0
-            while (true) {
-                delay(1000)
-                emit(MCommandResult(counter++))
+//                val c = remember { mutableStateOf(false) }
+//
+//                KSwitch(
+//                    modifier = Modifier.offset(y = 30.dp),
+//                    colors = SwitchDefaults.colors(
+//                        checkedTrackColor = Color(0xFF34C759),
+//                        uncheckedTrackColor = Color(0xFFE9E9EA),
+//                        checkedThumbColor = Color.White,
+//                        uncheckedThumbColor = Color.White,
+//                        checkedTrackAlpha = 1f,
+//                        uncheckedTrackAlpha = 1f,
+//                    ),
+//                    checked = c.value,
+//                    onCheckedChange = { c.value = it }
+//                )
             }
         }
     }
 }
 
-class MCommandResult(val counter: Int) : CommandResult
+fun createStore(): ReduktorStore<State, Event, News> {
+    return reduktorStore(
+        initialState = State.NoLocation,
+        eventReduktor = MainReduktor.EventReduktor,
+        commandResultReduktor = MainReduktor.CommandResultReduktor,
+        commandProcessors = listOf(
+            Di.provideLoadCurrentWeatherCommandProcessor(), Di.provideLoadLocationCommandProcessor()
+        ),
+    )
+}

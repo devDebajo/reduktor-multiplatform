@@ -1,4 +1,4 @@
-package ru.debajo.reduktor.demo
+package ru.debajo.reduktor.demo.reduktor
 
 import kotlin.coroutines.CoroutineContext
 import kotlin.native.concurrent.freeze

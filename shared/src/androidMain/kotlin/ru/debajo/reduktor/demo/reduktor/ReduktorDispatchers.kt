@@ -1,4 +1,4 @@
-package ru.debajo.reduktor.demo
+package ru.debajo.reduktor.demo.reduktor
 
 import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineDispatcher

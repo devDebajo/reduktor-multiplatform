@@ -1,8 +1,9 @@
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization")
     id("com.android.library")
-    id("org.jetbrains.compose") version "1.2.0-beta01"
+    id("org.jetbrains.compose") version "1.2.0"
 }
 
 compose {
@@ -28,15 +29,20 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
+                api("io.ktor:ktor-client-core:2.0.2")
+                api("io.ktor:ktor-client-logging:2.0.2")
+
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.runtime)
+
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
             }
 
         }
@@ -48,7 +54,9 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+                implementation("com.google.accompanist:accompanist-permissions:0.22.0-rc")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+                implementation("io.ktor:ktor-client-okhttp:2.0.2")
             }
         }
         val androidTest by getting
@@ -60,6 +68,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:2.0.2")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -80,4 +92,8 @@ android {
         minSdk = 21
         targetSdk = 32
     }
+}
+dependencies {
+    implementation("androidx.core:core:1.9.0")
+    implementation("com.google.android.gms:play-services-location:21.0.0")
 }

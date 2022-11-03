@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "ru.debajo.reduktor.demo.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "ru.debajo.reduktor.demo.android"
         minSdk = 21
