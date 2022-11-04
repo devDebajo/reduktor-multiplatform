@@ -9,7 +9,6 @@ plugins {
 compose {
     android {
         useAndroidX = true
-        androidxVersion = "1.2.1"
     }
 }
 
@@ -54,12 +53,11 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.accompanist:accompanist-permissions:0.22.0-rc")
+                implementation("com.google.accompanist:accompanist-permissions:0.26.0-alpha")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
                 implementation("io.ktor:ktor-client-okhttp:2.0.2")
             }
         }
-        val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -72,15 +70,6 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:2.0.2")
             }
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
         }
     }
 }
