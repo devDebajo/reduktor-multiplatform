@@ -1,5 +1,6 @@
 package ru.debajo.reduktor.demo.domain.processor
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterIsInstance
@@ -11,6 +12,7 @@ import ru.debajo.reduktor.CommandProcessor
 import ru.debajo.reduktor.CommandResult
 import ru.debajo.reduktor.demo.domain.LocationManager
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class LoadLocationCommandProcessor(
     private val locationManager: LocationManager
 ) : CommandProcessor {

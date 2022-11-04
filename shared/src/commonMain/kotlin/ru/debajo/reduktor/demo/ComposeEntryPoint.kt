@@ -27,27 +27,28 @@ internal fun ComposeEntryPoint(modifier: Modifier = Modifier) {
         LaunchedEffect(key1 = store, block = {
             store.onEvent(Event.LoadCity)
         })
-        val state by store.state.collectAsState()
-        state.let {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                when (it) {
-                    is State.Data -> {
-                        Column {
-                            Text("Temp: ${it.temp}")
-                            Text("Feels like: ${it.feelsLike}")
-                            Button(onClick = { store.onEvent(Event.Refresh) }) {
-                                Text("Refresh")
-                            }
+        val stateFromStore by store.state.collectAsState()
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            when (val state = stateFromStore) {
+                is State.Data -> {
+                    Column {
+                        Text("Temp: ${state.temp}")
+                        Text("Feels like: ${state.feelsLike}")
+                        Button(onClick = { store.onEvent(Event.Refresh) }) {
+                            Text("Refresh")
                         }
                     }
-                    is State.LoadingWeather -> Text("Loading")
-                    is State.NoLocation -> Text("No location")
-                    is State.LoadingError -> {
-                        Column {
-                            Text("Error")
-                            Button(onClick = { store.onEvent(Event.Refresh) }) {
-                                Text("Refresh")
-                            }
+                }
+                is State.LoadingWeather -> Text("Loading")
+                is State.NoLocation -> Text("No location")
+                is State.LoadingError -> {
+                    Column {
+                        Text("Error")
+                        Button(onClick = { store.onEvent(Event.Refresh) }) {
+                            Text("Refresh")
                         }
                     }
                 }
@@ -56,7 +57,7 @@ internal fun ComposeEntryPoint(modifier: Modifier = Modifier) {
     }
 }
 
-fun createStore(): ReduktorStore<State, Event, News> {
+private fun createStore(): ReduktorStore<State, Event, News> {
     return reduktorStore(
         initialState = State.NoLocation,
         eventReduktor = MainReduktor.EventReduktor,

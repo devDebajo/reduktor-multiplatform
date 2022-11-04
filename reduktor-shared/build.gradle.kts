@@ -2,7 +2,11 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("maven-publish")
 }
+
+group = "ru.debajo.reduktor"
+version = "1.0.0-alpha05"
 
 kotlin {
     android()
