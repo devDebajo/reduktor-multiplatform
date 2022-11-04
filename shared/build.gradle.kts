@@ -46,11 +46,6 @@ kotlin {
 
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
         val androidMain by getting {
             dependencies {
                 implementation("com.google.accompanist:accompanist-permissions:0.26.0-alpha")

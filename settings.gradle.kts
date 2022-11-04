@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "reduktor"
 include(":androidApp")
 include(":shared")
+include(":reduktor-shared")
