@@ -1,13 +1,13 @@
 package ru.debajo.reduktor.demo
 
+import ru.debajo.reduktor.Akt
+import ru.debajo.reduktor.CommandResult
+import ru.debajo.reduktor.Reduktor
 import ru.debajo.reduktor.demo.domain.processor.LoadCurrentWeatherCommandProcessor
 import ru.debajo.reduktor.demo.domain.processor.LoadLocationCommandProcessor
 import ru.debajo.reduktor.demo.model.Event
 import ru.debajo.reduktor.demo.model.News
 import ru.debajo.reduktor.demo.model.State
-import ru.debajo.reduktor.demo.reduktor.Akt
-import ru.debajo.reduktor.demo.reduktor.CommandResult
-import ru.debajo.reduktor.demo.reduktor.Reduktor
 
 object MainReduktor {
     object EventReduktor : Reduktor<State, Event, News> {

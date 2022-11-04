@@ -1,4 +1,4 @@
-package ru.debajo.reduktor.demo.reduktor
+package ru.debajo.reduktor
 
 /**
  * Reaction to an any event

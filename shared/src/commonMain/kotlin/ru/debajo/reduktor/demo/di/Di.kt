@@ -23,9 +23,7 @@ object Di {
             install(Logging) {
                 level = LogLevel.ALL
                 logger = object : Logger {
-                    override fun log(message: String) {
-                      ru.debajo.reduktor.demo.Logger.d(message)
-                    }
+                    override fun log(message: String) = println(message)
                 }
             }
         }

@@ -18,9 +18,13 @@ kotlin {
             baseName = "reduktor-shared"
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
+            }
+        }
 
         val androidMain by getting
 

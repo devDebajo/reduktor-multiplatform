@@ -12,12 +12,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import ru.debajo.reduktor.ReduktorStore
 import ru.debajo.reduktor.demo.di.Di
 import ru.debajo.reduktor.demo.model.Event
 import ru.debajo.reduktor.demo.model.News
 import ru.debajo.reduktor.demo.model.State
-import ru.debajo.reduktor.demo.reduktor.ReduktorStore
-import ru.debajo.reduktor.demo.reduktor.reduktorStore
+import ru.debajo.reduktor.reduktorStore
 
 @Composable
 internal fun ComposeEntryPoint(modifier: Modifier = Modifier) {

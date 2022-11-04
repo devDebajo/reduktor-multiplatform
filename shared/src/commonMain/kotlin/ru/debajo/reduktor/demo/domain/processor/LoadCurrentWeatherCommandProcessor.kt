@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.mapLatest
+import ru.debajo.reduktor.Command
+import ru.debajo.reduktor.CommandProcessor
+import ru.debajo.reduktor.CommandResult
 import ru.debajo.reduktor.demo.domain.GetWeatherUseCase
 import ru.debajo.reduktor.demo.domain.model.DomainCurrentWeather
-import ru.debajo.reduktor.demo.reduktor.Command
-import ru.debajo.reduktor.demo.reduktor.CommandProcessor
-import ru.debajo.reduktor.demo.reduktor.CommandResult
 
 class LoadCurrentWeatherCommandProcessor(
     private val getWeatherUseCase: GetWeatherUseCase

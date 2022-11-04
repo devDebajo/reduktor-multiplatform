@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
+import ru.debajo.reduktor.Command
+import ru.debajo.reduktor.CommandProcessor
+import ru.debajo.reduktor.CommandResult
 import ru.debajo.reduktor.demo.domain.LocationManager
-import ru.debajo.reduktor.demo.reduktor.Command
-import ru.debajo.reduktor.demo.reduktor.CommandProcessor
-import ru.debajo.reduktor.demo.reduktor.CommandResult
 
 class LoadLocationCommandProcessor(
     private val locationManager: LocationManager

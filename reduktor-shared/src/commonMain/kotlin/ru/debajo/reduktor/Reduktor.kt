@@ -1,4 +1,4 @@
-package ru.debajo.reduktor.demo.reduktor
+package ru.debajo.reduktor
 
 /**
  * Decision point how to change state, run side effect and one time news by input UI event and current state

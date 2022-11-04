@@ -4,7 +4,6 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
-import ru.debajo.reduktor.demo.Logger
 import ru.debajo.reduktor.demo.data.model.RemoteCurrentWeather
 
 interface WeatherService {
@@ -35,7 +34,6 @@ internal class WeatherServiceImpl(
                 parameters.append("timezone", timezone)
             }
         }.bodyAsText()
-        Logger.d("yopta $result")
         return json.decodeFromString(RemoteCurrentWeather.serializer(), result)
     }
 }
