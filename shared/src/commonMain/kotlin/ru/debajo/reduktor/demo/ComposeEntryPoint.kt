@@ -51,22 +51,6 @@ internal fun ComposeEntryPoint(modifier: Modifier = Modifier) {
                         }
                     }
                 }
-
-//                val c = remember { mutableStateOf(false) }
-//
-//                KSwitch(
-//                    modifier = Modifier.offset(y = 30.dp),
-//                    colors = SwitchDefaults.colors(
-//                        checkedTrackColor = Color(0xFF34C759),
-//                        uncheckedTrackColor = Color(0xFFE9E9EA),
-//                        checkedThumbColor = Color.White,
-//                        uncheckedThumbColor = Color.White,
-//                        checkedTrackAlpha = 1f,
-//                        uncheckedTrackAlpha = 1f,
-//                    ),
-//                    checked = c.value,
-//                    onCheckedChange = { c.value = it }
-//                )
             }
         }
     }
