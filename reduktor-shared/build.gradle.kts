@@ -9,7 +9,9 @@ group = "ru.debajo.reduktor"
 version = "1.0.0-alpha05"
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()

@@ -6,7 +6,14 @@ Implementation of Unidirectional Data Flow for Android and iOS with Kotlin Multi
 
 # Install
 
-You need to clone this repository and publish it to Maven local
+You need to clone this repository, publish to Maven Local by command:
+```bash
+./gradlew publishToMavenLocal
+```
+then add dependency:
+```gradle
+implementation("ru.debajo.reduktor:reduktor-shared:<venrion>")
+```
 
 License
 -------
