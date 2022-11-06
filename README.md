@@ -10,7 +10,7 @@ You need to clone this repository, publish to Maven Local by command:
 ```bash
 ./gradlew publishToMavenLocal
 ```
-then add dependency:
+then add dependency in your project:
 ```gradle
 implementation("ru.debajo.reduktor:reduktor-shared:<version>")
 ```
