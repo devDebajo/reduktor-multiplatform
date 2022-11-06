@@ -12,7 +12,7 @@ You need to clone this repository, publish to Maven Local by command:
 ```
 then add dependency:
 ```gradle
-implementation("ru.debajo.reduktor:reduktor-shared:<venrion>")
+implementation("ru.debajo.reduktor:reduktor-shared:<version>")
 ```
 
 License
