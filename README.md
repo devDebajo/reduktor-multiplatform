@@ -1,24 +1,12 @@
 # Reduktor
 Implementation of Unidirectional Data Flow for Android and iOS with Kotlin Multiplatform and Coroutines
 
-[![](https://jitpack.io/v/devDebajo/reduktor-multiplatform.svg)](https://jitpack.io/#devDebajo/reduktor-multiplatform)
-
 # Principle of working
 <img src="img/Diagram.png" alt="Diagram"/>
 
 # Install
 
-In project level `build.gradle` add jitpack.io repository:
-```kotlin
-repositories {
-    maven { url 'https://jitpack.io' }
-}
-```
-
-Then add it to module level `build.gradle`:
-```kotlin
-implementation 'com.github.devDebajo:reduktor-multiplatform:{latest_version}'
-```
+You need to clone this repository and publish it to Maven local
 
 License
 -------
